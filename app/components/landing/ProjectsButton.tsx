@@ -22,14 +22,14 @@ export const ProjectsButton = () => {
   ]
 
   return (
-    <section className="py-4">
-      <div className="flex justify-center gap-4 flex-wrap">
+    <section className="py-4 px-4 sm:px-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-center gap-3 sm:gap-4">
         {buttons.map((button) => (
           <Button 
             key={button.href}
             size="lg" 
             asChild 
-            className="text-base whitespace-nowrap"
+            className="text-sm sm:text-base whitespace-nowrap w-full lg:w-auto"
           >
             <Link href={button.href}>
               {button.text}

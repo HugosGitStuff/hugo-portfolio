@@ -12,7 +12,6 @@ export const Navbar = () => {
   const navItems = [
     { href: '/about', label: 'About', variant: 'ghost' },
     { href: '/projects', label: 'Projects', variant: 'ghost' },
-    { href: '/cv', label: 'CV', variant: 'ghost' },
     { href: '/contact', label: 'Contact', variant: 'default' }
   ] as const
   return (

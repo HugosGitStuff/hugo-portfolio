@@ -12,10 +12,6 @@ export const ProjectsButton = () => {
       href: "/projects"
     },
     {
-      text: "Access My CV",
-      href: "/cv"
-    },
-    {
       text: "Get in Touch",
       href: "/contact"
     }

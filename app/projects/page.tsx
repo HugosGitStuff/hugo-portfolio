@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
-import { HomeButton } from '@/app/components/navigation/HomeButton'
+import { SimpleNavbar } from '@/app/components/navigation/SimpleNavbar'
+import { Footer } from '@/app/components/landing/Footer'
 
 export const metadata: Metadata = {
   title: 'Projects | Hugo Ramalho',
@@ -8,15 +9,16 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center pt-16 sm:pt-20 px-6 sm:px-12 md:px-16 lg:px-24">
-      <HomeButton />
-      <div className="max-w-4xl mx-auto mt-8 sm:mt-12">
+    <main className="flex min-h-screen flex-col items-center">
+      <SimpleNavbar />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
         <h1 className="text-4xl font-bold mb-8">My Projects</h1>
         <div className="space-y-6">
           {/* Content will be added later */}
           <p className="text-lg">Project showcase coming soon...</p>
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

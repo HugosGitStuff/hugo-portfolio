@@ -30,39 +30,29 @@ export default function Chat() {
   // Handle input visibility when keyboard appears
   useEffect(() => {
     const handleFocus = () => {
-      // Small delay to let the keyboard animation start
+      // Wait for keyboard animation
       setTimeout(() => {
         if (inputRef.current) {
-          // First ensure the sheet content is scrolled to bottom
-          const sheetContent = inputRef.current.closest('[role="dialog"]');
-          if (sheetContent) {
-            sheetContent.scrollTop = sheetContent.scrollHeight;
+          const viewportHeight = window.visualViewport?.height || window.innerHeight;
+          const inputRect = inputRef.current.getBoundingClientRect();
+          
+          // If input is obscured by keyboard
+          if (inputRect.bottom > viewportHeight) {
+            // Scroll the input into view
+            inputRef.current.scrollIntoView({ block: 'center' });
           }
-          
-          // Then position the input field
-          window.scrollTo(0, 0);
-          inputRef.current.scrollIntoView({ block: 'end' });
-          
-          // Additional adjustment after keyboard is fully shown
-          setTimeout(() => {
-            if (inputRef.current) {
-              inputRef.current.scrollIntoView({ block: 'center' });
-            }
-          }, 300);
         }
-      }, 50);
+      }, 300);
     };
 
     const input = inputRef.current;
     if (input) {
       input.addEventListener('focus', handleFocus);
-      input.addEventListener('click', handleFocus);
     }
 
     return () => {
       if (input) {
         input.removeEventListener('focus', handleFocus);
-        input.removeEventListener('click', handleFocus);
       }
     };
   }, []);
@@ -95,13 +85,11 @@ export default function Chat() {
       setMessages(prev => [...prev, { content: "Sorry, I'm having trouble responding right now. Please try again later.", isUser: false }]);
     } finally {
       setIsLoading(false);
-      // Refocus the input field after response
-      inputRef.current?.focus();
     }
   };
 
   return (
-    <Card className="w-full min-h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative overflow-hidden">
+    <Card className="w-full h-[calc(100dvh-4rem)] flex flex-col relative overflow-hidden">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div

@@ -58,19 +58,19 @@ export default function AboutPage() {
       location: 'Brazil'
     },
     {
-      year: '2006-2007(Internship since 2005',
+      year: '2009-2012',
+      title: 'Mechanical Engineering Studies',
+      description: 'Four years of Mechanical Engineering education at Unileste',
+      location: 'Minas Gerais, Brazil'
+    },
+    {
+      year: '2006-2007(Internship since 2005)',
       title: 'CNC Precision Machining',
       description: 'Working at Consulting Engineering & Development Services, Inc., strengthening technical precision skills',
       location: 'Connecticut, USA'
     },
     {
-      year: '2009-2012',
-      title: 'Mechanical Engineering Studies',
-      description: 'Three years of Mechanical Engineering education at Unileste',
-      location: 'Minas Gerais, Brazil'
-    },
-    {
-      year: '2006',
+      year: '2003-2006',
       title: 'Technical Diploma in Manufacturing',
       description: 'Building foundational technical knowledge and skills',
       location: 'Danbury, Connecticut, USA'

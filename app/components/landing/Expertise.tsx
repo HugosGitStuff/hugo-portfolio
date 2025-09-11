@@ -3,27 +3,27 @@ import { Card } from '@/components/ui/card'
 export const Expertise = () => {
   const skills = [
     {
-      title: 'AI Development Tools',
+      title: '🤖 AI Development Tools',
       description: 'Experience with modern AI tools and their integration into development workflows.'
     },
     {
-      title: 'Full-Stack Programming',
+      title: '💻 Full-Stack Programming',
       description: 'Developing end-to-end web applications using modern technologies and frameworks.'
     },
     {
-      title: 'Technical Leadership',
+      title: '👨‍💻 Technical Leadership',
       description: 'Leading technical projects and teams across multiple domains and technologies.'
     },
     {
-      title: 'Project Management',
+      title: '📊 Project Management',
       description: 'Leading teams and managing complex projects across multiple domains.'
     },
     {
-      title: 'Problem Solving',
+      title: '🧩 Problem Solving',
       description: 'Analytical approach to solving technical and business challenges.'
     },
     {
-      title: 'Client Services',
+      title: '🤝 Client Services',
       description: 'Strong focus on client satisfaction and relationship management.'
     }
   ]

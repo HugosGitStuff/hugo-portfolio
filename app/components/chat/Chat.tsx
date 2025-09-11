@@ -27,61 +27,31 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle mobile keyboard and visibility
+  // Handle input visibility when keyboard appears
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    
-    const handleVisibility = () => {
-      if (inputRef.current) {
-        // Clear any pending scroll timeout
-        if (scrollTimeout) clearTimeout(scrollTimeout);
-        
-        // Schedule a new scroll adjustment
-        scrollTimeout = setTimeout(() => {
+    const handleFocus = () => {
+      // Wait for the keyboard animation
+      setTimeout(() => {
+        if (inputRef.current) {
+          const rect = inputRef.current.getBoundingClientRect();
           const viewportHeight = window.visualViewport?.height || window.innerHeight;
-          const inputRect = inputRef.current?.getBoundingClientRect();
           
-          if (inputRect && inputRect.bottom > viewportHeight) {
-            // Initial scroll
-            window.scrollTo(0, document.body.scrollHeight);
-            
-            // Secondary scroll after a brief delay
-            setTimeout(() => {
-              inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              // Final adjustment for extra visibility
-              window.scrollTo({
-                top: window.scrollY + 100,
-                behavior: 'smooth'
-              });
-            }, 50);
+          // Check if input is hidden by keyboard
+          if (rect.bottom > viewportHeight) {
+            inputRef.current.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'center'
+            });
           }
-        }, 100);
-      }
+        }
+      }, 100);
     };
 
-    // Handle viewport changes (e.g., keyboard appearance)
-    const handleViewportChange = () => {
-      handleVisibility();
-    };
-
-    // Set up all event listeners
     const input = inputRef.current;
-    const visualViewport = window.visualViewport;
-    
-    visualViewport?.addEventListener('resize', handleViewportChange);
-    visualViewport?.addEventListener('scroll', handleViewportChange);
-    input?.addEventListener('focus', handleVisibility);
-    window.addEventListener('resize', handleVisibility);
-    window.addEventListener('scroll', handleVisibility);
+    input?.addEventListener('focus', handleFocus);
 
-    // Cleanup function
     return () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      visualViewport?.removeEventListener('resize', handleViewportChange);
-      visualViewport?.removeEventListener('scroll', handleViewportChange);
-      input?.removeEventListener('focus', handleVisibility);
-      window.removeEventListener('resize', handleVisibility);
-      window.removeEventListener('scroll', handleVisibility);
+      input?.removeEventListener('focus', handleFocus);
     };
   }, []);
 

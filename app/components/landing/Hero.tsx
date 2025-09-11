@@ -2,7 +2,7 @@ import { ProfilePhoto } from './ProfilePhoto'
 
 export const Hero = () => {
   return (
-    <section className="pt-24 sm:pt-28 pb-6">
+    <section className="pt-24 sm:pt-28 pb-6 space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 items-start">
         <div className="flex justify-center lg:justify-start">
           <div className="w-64 lg:w-auto">
@@ -33,6 +33,11 @@ export const Hero = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="text-center">
+        <p className="text-lg sm:text-xl font-bold text-primary animate-pulse">
+          "Click on the chat icon on the bottom right of the page and let's chat!"
+        </p>
       </div>
     </section>
   )

@@ -27,6 +27,7 @@ export default function ChatButton() {
         <SheetContent 
           side="right" 
           className="w-full h-[100dvh] sm:w-[400px] md:w-[540px] p-0 focus:outline-none"
+          onOpenAutoFocus={(e) => e.preventDefault()} // Prevent auto-focus when sheet opens
         >
           <SheetHeader className="px-4 pt-4">
             <SheetTitle>Chat with Hugo</SheetTitle>

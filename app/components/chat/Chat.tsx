@@ -120,6 +120,7 @@ export default function Chat() {
               placeholder="Type your message..."
               className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={isLoading}
+              tabIndex={1} // Ensure it's focusable but not auto-focused
             />
             <Button type="submit" disabled={isLoading}>
               {isLoading ? 'Sending...' : 'Send'}

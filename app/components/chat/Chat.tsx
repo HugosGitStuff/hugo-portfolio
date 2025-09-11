@@ -30,28 +30,40 @@ export default function Chat() {
   // Handle input visibility when keyboard appears
   useEffect(() => {
     const handleFocus = () => {
-      // Wait for the keyboard animation
+      // Small delay to let the keyboard animation start
       setTimeout(() => {
         if (inputRef.current) {
-          const rect = inputRef.current.getBoundingClientRect();
-          const viewportHeight = window.visualViewport?.height || window.innerHeight;
-          
-          // Check if input is hidden by keyboard
-          if (rect.bottom > viewportHeight) {
-            inputRef.current.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'center'
-            });
+          // First ensure the sheet content is scrolled to bottom
+          const sheetContent = inputRef.current.closest('[role="dialog"]');
+          if (sheetContent) {
+            sheetContent.scrollTop = sheetContent.scrollHeight;
           }
+          
+          // Then position the input field
+          window.scrollTo(0, 0);
+          inputRef.current.scrollIntoView({ block: 'end' });
+          
+          // Additional adjustment after keyboard is fully shown
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.scrollIntoView({ block: 'center' });
+            }
+          }, 300);
         }
-      }, 100);
+      }, 50);
     };
 
     const input = inputRef.current;
-    input?.addEventListener('focus', handleFocus);
+    if (input) {
+      input.addEventListener('focus', handleFocus);
+      input.addEventListener('click', handleFocus);
+    }
 
     return () => {
-      input?.removeEventListener('focus', handleFocus);
+      if (input) {
+        input.removeEventListener('focus', handleFocus);
+        input.removeEventListener('click', handleFocus);
+      }
     };
   }, []);
 
@@ -89,7 +101,7 @@ export default function Chat() {
   };
 
   return (
-    <Card className="w-full min-h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative">
+    <Card className="w-full min-h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative overflow-hidden">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div
@@ -109,7 +121,7 @@ export default function Chat() {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto pb-safe">
+      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto">
         <form onSubmit={handleSubmit} className="p-4">
           <div className="flex gap-2">
             <input
@@ -120,12 +132,6 @@ export default function Chat() {
               placeholder="Type your message..."
               className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={isLoading}
-              onFocus={(e) => {
-                // Additional scroll on focus
-                setTimeout(() => {
-                  e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-              }}
             />
             <Button type="submit" disabled={isLoading}>
               {isLoading ? 'Sending...' : 'Send'}

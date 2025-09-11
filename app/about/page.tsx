@@ -26,7 +26,7 @@ export default function AboutPage() {
     { name: 'Spanish', category: 'Languages', icon: '🌏' },
     
     // Industry Knowledge
-    { name: 'Manufacturing', category: 'Industry Knowledge', icon: '🏭' },
+    { name: 'Manufacturing and Precision CNC Machining', category: 'Industry Knowledge', icon: '🏭' },
     { name: 'Mechanical Engineering', category: 'Industry Knowledge', icon: '🔧' },
     { name: 'Business Operations', category: 'Industry Knowledge', icon: '💼' },
     { name: 'Customer Service', category: 'Industry Knowledge', icon: '🎯' }
@@ -40,7 +40,7 @@ export default function AboutPage() {
       location: 'Portugal'
     },
     {
-      year: '2014-Present',
+      year: '2015-Present',
       title: 'Founder & Owner - Ocean Gardens Garden Care',
       description: 'Leading a team delivering exceptional landscaping services, developing leadership and project management skills',
       location: 'Portugal'
@@ -52,19 +52,19 @@ export default function AboutPage() {
       location: 'Portugal, Spain'
     },
     {
-      year: '2010-2013',
+      year: '2008-2015',
       title: 'English Teacher',
       description: 'Teaching English at Uptime Comunicação em Inglês, developing strong interpersonal and communication skills',
       location: 'Brazil'
     },
     {
-      year: '2008-2010',
-      title: 'Machinist',
+      year: '2006-2007(Internship since 2005',
+      title: 'CNC Precision Machining',
       description: 'Working at Consulting Engineering & Development Services, Inc., strengthening technical precision skills',
       location: 'Connecticut, USA'
     },
     {
-      year: '2007-2010',
+      year: '2009-2012',
       title: 'Mechanical Engineering Studies',
       description: 'Three years of Mechanical Engineering education at Unileste',
       location: 'Minas Gerais, Brazil'

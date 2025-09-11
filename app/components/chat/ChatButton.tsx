@@ -22,7 +22,7 @@ export default function ChatButton() {
         </SheetTrigger>
         <SheetContent 
           side="right" 
-          className="w-full sm:w-[540px] p-0 h-[100dvh]"
+          className="w-[400px] sm:w-[540px] p-0"
         >
           <SheetHeader className="px-4 pt-4">
             <SheetTitle>Chat with Hugo</SheetTitle>

@@ -22,9 +22,22 @@ export default function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Scroll to bottom when messages change
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Focus input and scroll into view when chat opens
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100); // Small delay to ensure the sheet animation is complete
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,7 +73,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-8rem)] md:h-[calc(100dvh-4rem)]">
+    <Card className="w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-2rem)] flex flex-col relative">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div
@@ -80,7 +93,7 @@ export default function Chat() {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="sticky bottom-0 left-0 right-0 bg-background border-t">
+      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto">
         <form onSubmit={handleSubmit} className="p-4">
           <div className="flex gap-2">
             <input
@@ -98,6 +111,6 @@ export default function Chat() {
           </div>
         </form>
       </div>
-    </div>
+    </Card>
   );
 }

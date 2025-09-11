@@ -21,9 +21,9 @@ export default function AboutPage() {
     { name: 'Strategic Planning', category: 'Leadership', icon: '📈' },
     
     // Languages
-    { name: 'English', category: 'Languages', icon: '🌎' },
-    { name: 'Portuguese', category: 'Languages', icon: '🌍' },
-    { name: 'Spanish', category: 'Languages', icon: '🌏' },
+    { name: 'English (Fluent)', category: 'Languages', icon: '🌎' },
+    { name: 'Portuguese (Native)', category: 'Languages', icon: '🌍' },
+    { name: 'Spanish (Intermediate)', category: 'Languages', icon: '🌏' },
     
     // Industry Knowledge
     { name: 'Manufacturing and Precision CNC Machining', category: 'Industry Knowledge', icon: '🏭' },
@@ -36,43 +36,43 @@ export default function AboutPage() {
     {
       year: '2024',
       title: 'IT Career Transition',
-      description: 'Studying AI Development Tools, Full-Stack Programming, and Software Engineering',
+      description: 'Studying AI Development Tools, Full-Stack Programming, and Software Engineering.',
       location: 'Portugal'
     },
     {
       year: '2015-Present',
       title: 'Founder & Owner - Ocean Gardens Garden Care',
-      description: 'Leading a team delivering exceptional landscaping services, developing leadership and project management skills',
+      description: 'Leading a team delivering exceptional landscaping services, developing leadership and project management skills.',
       location: 'Portugal'
     },
     {
       year: '2018-Present',
       title: 'Owner - Friendly Maneuver Transports and Tourism',
-      description: 'Operating a solo airport transfer service across multiple cities, focusing on client communication and operational efficiency',
+      description: 'Operating a solo airport transfer service across multiple cities, focusing on client communication and operational efficiency.',
       location: 'Portugal, Spain'
     },
     {
       year: '2008-2015',
       title: 'English Teacher',
-      description: 'Teaching English at Uptime Comunicação em Inglês, developing strong interpersonal and communication skills',
-      location: 'Brazil'
+      description: 'Teaching English at Uptime Comunicação em Inglês, developing strong interpersonal and communication skills.',
+      location: 'Minas Gerais, Brazil'
     },
     {
       year: '2009-2012',
       title: 'Mechanical Engineering Studies',
-      description: 'Four years of Mechanical Engineering education at Unileste',
+      description: 'Four years of Mechanical Engineering Degreeeducation at Unileste.',
       location: 'Minas Gerais, Brazil'
     },
     {
       year: '2006-2007(Internship since 2005)',
       title: 'CNC Precision Machining',
-      description: 'Working at Consulting Engineering & Development Services, Inc., strengthening technical precision skills',
+      description: 'Working at Consulting Engineering & Development Services, Inc., CED Inc. Precision machining of metal parts and other composites for health and millitary use.',
       location: 'Connecticut, USA'
     },
     {
       year: '2003-2006',
       title: 'Technical Diploma in Manufacturing',
-      description: 'Building foundational technical knowledge and skills',
+      description: 'Building foundational technical knowledge and skills in manufacturing and precision machining.',
       location: 'Danbury, Connecticut, USA'
     }
   ]
@@ -158,7 +158,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="bg-gradient-to-r from-black/5 to-black/10 rounded-xl p-6 text-center">
             <p className="text-lg leading-relaxed font-medium">
-              Connect with me to explore AI developing tools, IT opportunities, full-stack development and discuss Salesforce Sales Ops or share insights on career transitions and possibilities!
+              Connect with me to explore AI developing tools, IT opportunities, full-stack development or share insights on career transitions and possibilities!
             </p>
           </motion.section>
         </div>

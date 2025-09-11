@@ -13,18 +13,26 @@ export default function ChatButton() {
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
     if (open) {
-      // Delay focus until sheet is fully open
+      // Initial delay for sheet animation
       setTimeout(() => {
         const input = document.querySelector('input[type="text"]') as HTMLInputElement;
         if (input) {
+          // First scroll to ensure the sheet is in view
+          window.scrollTo(0, 0);
+          
+          // Then focus and scroll with a series of delayed adjustments
           input.focus();
-          // Force scroll after keyboard appears
-          setTimeout(() => {
-            window.scrollTo(0, document.body.scrollHeight);
-            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 500);
+          
+          // Series of scroll adjustments to combat iOS keyboard behavior
+          const scrollAdjustments = [100, 300, 500, 800];
+          scrollAdjustments.forEach(delay => {
+            setTimeout(() => {
+              window.scrollTo(0, document.body.scrollHeight);
+              input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, delay);
+          });
         }
-      }, 100);
+      }, 150);
     }
   };
 

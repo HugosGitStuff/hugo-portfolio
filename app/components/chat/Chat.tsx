@@ -60,28 +60,28 @@ export default function Chat() {
   };
 
   return (
-    <Card className="w-full h-[calc(100vh-2rem)] flex flex-col relative">
-      <div className="absolute inset-0 flex flex-col">
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.map((message, index) => (
+    <div className="flex flex-col h-[calc(100dvh-8rem)] md:h-[calc(100dvh-4rem)]">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+          >
             <div
-              key={index}
-              className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+              className={`max-w-[80%] rounded-lg p-3 ${
+                message.isUser
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-100 text-gray-900'
+              }`}
             >
-              <div
-                className={`max-w-[80%] rounded-lg p-3 ${
-                  message.isUser
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-900'
-                }`}
-              >
-                {message.content}
-              </div>
+              {message.content}
             </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-        <form onSubmit={handleSubmit} className="p-4 border-t bg-background">
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="sticky bottom-0 left-0 right-0 bg-background border-t">
+        <form onSubmit={handleSubmit} className="p-4">
           <div className="flex gap-2">
             <input
               ref={inputRef}
@@ -98,6 +98,6 @@ export default function Chat() {
           </div>
         </form>
       </div>
-    </Card>
+    </div>
   );
 }

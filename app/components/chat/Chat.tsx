@@ -27,25 +27,33 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle input visibility when focused
+  // Handle mobile keyboard and visibility
   useEffect(() => {
     const handleVisibility = () => {
-      if (messagesEndRef.current && inputRef.current) {
-        // First scroll to the last message
-        messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // Then ensure the input is visible
+      if (inputRef.current) {
+        // Wait for the keyboard to appear
         setTimeout(() => {
-          inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }, 100);
+          inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Additional scroll to ensure visibility on iOS
+          window.scrollTo(0, window.scrollY + 100);
+        }, 300);
       }
     };
 
     const input = inputRef.current;
     input?.addEventListener('focus', handleVisibility);
 
+    // Initial focus
+    const timer = setTimeout(() => {
+      if (input) {
+        input.focus();
+        handleVisibility();
+      }
+    }, 100);
+
     return () => {
       input?.removeEventListener('focus', handleVisibility);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -84,44 +92,48 @@ export default function Chat() {
 
   return (
     <Card className="w-full h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative">
-      <div className="flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[150px]">
-          {messages.map((message, index) => (
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+          >
             <div
-              key={index}
-              className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+              className={`max-w-[80%] rounded-lg p-3 ${
+                message.isUser
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-100 text-gray-900'
+              }`}
             >
-              <div
-                className={`max-w-[80%] rounded-lg p-3 ${
-                  message.isUser
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 text-gray-900'
-                }`}
-              >
-                {message.content}
-              </div>
+              {message.content}
             </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-        <div className="relative bg-card border-t mt-auto">
-          <form onSubmit={handleSubmit} className="p-4">
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
-                className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                disabled={isLoading}
-              />
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? 'Sending...' : 'Send'}
-              </Button>
-            </div>
-          </form>
-        </div>
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto pb-safe">
+        <form onSubmit={handleSubmit} className="p-4">
+          <div className="flex gap-2">
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+              className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={isLoading}
+              onFocus={(e) => {
+                // Additional scroll on focus
+                setTimeout(() => {
+                  e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+              }}
+            />
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send'}
+            </Button>
+          </div>
+        </form>
       </div>
     </Card>
   );

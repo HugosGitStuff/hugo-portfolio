@@ -9,9 +9,28 @@ import Chat from './Chat';
 export default function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Handle sheet open state
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (open) {
+      // Delay focus until sheet is fully open and keyboard is shown
+      setTimeout(() => {
+        const input = document.querySelector('input[type="text"]') as HTMLInputElement;
+        if (input) {
+          input.focus();
+          // Additional scroll after keyboard is shown
+          setTimeout(() => {
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            window.scrollTo(0, window.scrollY + 200);
+          }, 500);
+        }
+      }, 300);
+    }
+  };
+
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <Sheet open={isOpen} onOpenChange={handleOpenChange}>
         <SheetTrigger asChild>
           <Button
             className="h-12 w-12 rounded-full shadow-lg hover:shadow-xl transition-shadow"

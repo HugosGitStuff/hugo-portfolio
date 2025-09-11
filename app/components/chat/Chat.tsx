@@ -27,33 +27,23 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle mobile keyboard and visibility
+  // Handle input visibility when focused
   useEffect(() => {
     const handleVisibility = () => {
       if (inputRef.current) {
-        // Wait for the keyboard to appear
         setTimeout(() => {
           inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Additional scroll to ensure visibility on iOS
-          window.scrollTo(0, window.scrollY + 100);
-        }, 300);
+          // Ensure the input is visible above the keyboard
+          window.scrollTo(0, window.scrollY + 200);
+        }, 100);
       }
     };
 
     const input = inputRef.current;
     input?.addEventListener('focus', handleVisibility);
 
-    // Initial focus
-    const timer = setTimeout(() => {
-      if (input) {
-        input.focus();
-        handleVisibility();
-      }
-    }, 100);
-
     return () => {
       input?.removeEventListener('focus', handleVisibility);
-      clearTimeout(timer);
     };
   }, []);
 

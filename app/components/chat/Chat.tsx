@@ -30,30 +30,39 @@ export default function Chat() {
   // Handle mobile keyboard and visibility
   useEffect(() => {
     const handleVisibility = () => {
-      if (inputRef.current) {
-        // Wait for the keyboard to appear
-        setTimeout(() => {
-          inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Additional scroll to ensure visibility on iOS
-          window.scrollTo(0, window.scrollY + 100);
-        }, 300);
-      }
+      // Use RAF to ensure DOM is ready
+      requestAnimationFrame(() => {
+        if (inputRef.current) {
+          const viewportHeight = window.visualViewport?.height || window.innerHeight;
+          const inputRect = inputRef.current.getBoundingClientRect();
+          
+          // Check if input is obscured by keyboard
+          if (inputRect.bottom > viewportHeight) {
+            // Scroll the input into view with extra padding
+            window.scrollTo({
+              top: window.scrollY + (inputRect.bottom - viewportHeight) + 60,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
     };
 
+    // Handle viewport changes (e.g., keyboard appearance)
+    const handleViewportChange = () => {
+      requestAnimationFrame(handleVisibility);
+    };
+
+    // Add viewport change listener
+    window.visualViewport?.addEventListener('resize', handleViewportChange);
+    
+    // Handle focus events
     const input = inputRef.current;
     input?.addEventListener('focus', handleVisibility);
 
-    // Initial focus
-    const timer = setTimeout(() => {
-      if (input) {
-        input.focus();
-        handleVisibility();
-      }
-    }, 100);
-
     return () => {
+      window.visualViewport?.removeEventListener('resize', handleViewportChange);
       input?.removeEventListener('focus', handleVisibility);
-      clearTimeout(timer);
     };
   }, []);
 
@@ -91,7 +100,7 @@ export default function Chat() {
   };
 
   return (
-    <Card className="w-full h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative">
+    <Card className="w-full min-h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div

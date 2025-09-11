@@ -1,51 +1,166 @@
-import { Metadata } from 'next'
+'use client'
+
 import { SimpleNavbar } from '@/app/components/navigation/SimpleNavbar'
 import { Footer } from '@/app/components/landing/Footer'
-
-export const metadata: Metadata = {
-  title: 'About | Hugo Ramalho',
-  description: 'Learn more about Hugo Ramalho and his journey in software development.',
-}
+import { motion } from 'framer-motion'
+import { Timeline } from '@/app/components/about/Timeline'
+import { SkillBadges } from '@/app/components/about/SkillBadge'
 
 export default function AboutPage() {
+  const skills = [
+    // Technical Skills
+    { name: 'AI Development', category: 'Technical Skills', icon: '🤖' },
+    { name: 'Full-Stack Development', category: 'Technical Skills', icon: '💻' },
+    { name: 'Software Engineering', category: 'Technical Skills', icon: '⚙️' },
+    { name: 'Project Management', category: 'Technical Skills', icon: '📊' },
+    
+    // Leadership Skills
+    { name: 'Team Leadership', category: 'Leadership', icon: '👥' },
+    { name: 'Problem Solving', category: 'Leadership', icon: '🔍' },
+    { name: 'Client Communication', category: 'Leadership', icon: '🤝' },
+    { name: 'Strategic Planning', category: 'Leadership', icon: '📈' },
+    
+    // Languages
+    { name: 'English', category: 'Languages', icon: '🌎' },
+    { name: 'Portuguese', category: 'Languages', icon: '🌍' },
+    { name: 'Spanish', category: 'Languages', icon: '🌏' },
+    
+    // Industry Knowledge
+    { name: 'Manufacturing', category: 'Industry Knowledge', icon: '🏭' },
+    { name: 'Mechanical Engineering', category: 'Industry Knowledge', icon: '🔧' },
+    { name: 'Business Operations', category: 'Industry Knowledge', icon: '💼' },
+    { name: 'Customer Service', category: 'Industry Knowledge', icon: '🎯' }
+  ]
+
+  const timelineEvents = [
+    {
+      year: '2024',
+      title: 'IT Career Transition',
+      description: 'Studying AI Development Tools, Full-Stack Programming, and Software Engineering',
+      location: 'Portugal'
+    },
+    {
+      year: '2014-Present',
+      title: 'Founder & Owner - Ocean Gardens Garden Care',
+      description: 'Leading a team delivering exceptional landscaping services, developing leadership and project management skills',
+      location: 'Portugal'
+    },
+    {
+      year: '2018-Present',
+      title: 'Owner - Friendly Maneuver Transports and Tourism',
+      description: 'Operating a solo airport transfer service across multiple cities, focusing on client communication and operational efficiency',
+      location: 'Portugal, Spain'
+    },
+    {
+      year: '2010-2013',
+      title: 'English Teacher',
+      description: 'Teaching English at Uptime Comunicação em Inglês, developing strong interpersonal and communication skills',
+      location: 'Brazil'
+    },
+    {
+      year: '2008-2010',
+      title: 'Machinist',
+      description: 'Working at Consulting Engineering & Development Services, Inc., strengthening technical precision skills',
+      location: 'Connecticut, USA'
+    },
+    {
+      year: '2007-2010',
+      title: 'Mechanical Engineering Studies',
+      description: 'Three years of Mechanical Engineering education at Unileste',
+      location: 'Minas Gerais, Brazil'
+    },
+    {
+      year: '2006',
+      title: 'Technical Diploma in Manufacturing',
+      description: 'Building foundational technical knowledge and skills',
+      location: 'Danbury, Connecticut, USA'
+    }
+  ]
   return (
     <main className="flex min-h-screen flex-col items-center">
       <SimpleNavbar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
-        <h1 className="text-4xl font-bold mb-8">About Me</h1>
-        
-        <div className="space-y-8">
-          {/* Professional Summary */}
-          <div className="text-lg font-medium text-muted-foreground text-center italic">
-            | Entrepreneur Transitioning to IT | AI Development Tools & Full-Stack Programming Student | Salesforce Sales Operations Student | Experienced Leader in Project Management, Problem Solving & Client Services |
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-6">About Me</h1>
+          <div className="text-lg font-medium text-muted-foreground italic max-w-3xl mx-auto border-l-4 border-r-4 border-black/20 px-6 py-4">
+            | Entrepreneur Transitioning to IT | AI Development Tools & Full-Stack Programming Student | Software Engineering & AI Student | Experienced Leader in Project Management, Problem Solving & Client Services |
           </div>
-
-          {/* Main Content */}
-          <div className="space-y-6">
+        </motion.div>
+        
+        <div className="space-y-12">
+          {/* Introduction Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-card/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <h2 className="text-2xl font-semibold mb-4">Professional Journey</h2>
             <p className="text-lg leading-relaxed">
-              I'm a resilient, problem-solving professional transitioning into IT, fueled by a passion for technology and a diverse career spanning three continents. Currently studying AI developing tools, full-stack programming and Salesforce Sales Operations. I'm eager to apply my technical aptitude and adaptability to roles in IT, such as Software Development and Engineering with or without AI Tools, Project Management in Software Development or Salesforce Sales Operations.
+              I'm a resilient, problem-solving professional transitioning into IT, fueled by a passion for technology and a diverse career spanning three continents. Currently studying AI Developing Tools, full-stack programming and Software Engineering & AI. I'm eager to apply my technical aptitude and adaptability to roles in IT, such as Software Development and Engineering with or without AI Tools, Project Management in Software Development or Software Engineering & AI.
             </p>
+          </motion.section>
 
-            <p className="text-lg leading-relaxed">
-              I'm pivoting to IT, building on my technical foundation from a Technical Diploma in Manufacturing (Danbury, Connecticut, USA) and three years of Mechanical Engineering at Unileste, Minas Gerais, Brazil. My early career as a machinist at Consulting Engineering & Development Services, Inc. in the USA, and English teacher at Uptime Comunicação em Inglês in Brazil strengthened my precision and interpersonal skills.
-            </p>
+          {/* Professional Timeline */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-card/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <h2 className="text-2xl font-semibold mb-6">Professional Timeline</h2>
+            <Timeline events={timelineEvents} />
+          </motion.section>
 
-            <p className="text-lg leading-relaxed">
-              As an entrepreneur and owner of Ocean Gardens Garden Care in Portugal, I've led a team delivering exceptional landscaping services for 10 years, honing leadership and project management. I also run Friendly Maneuver Transports and Tourism, a solo airport transfer service across Faro, Lisbon, Seville, and Malaga, sharpening client communication and operational efficiency.
-            </p>
+          {/* Skills */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-card/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <h2 className="text-2xl font-semibold mb-6">Skills & Expertise</h2>
+            <SkillBadges skills={skills} />
+          </motion.section>
 
-            <p className="text-lg leading-relaxed">
-              My journeys between Brazil, Connecticut USA and Portugal blends Brazilian warmth, American drive, and Portuguese adaptability, enabling me to thrive in diverse environments.
-            </p>
+          {/* Cultural Background & Personal */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-card/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Global Perspective</h2>
+                <p className="text-lg leading-relaxed">
+                  My journeys between Brazil, Connecticut USA and Portugal blends Brazilian warmth, American drive, and Portuguese adaptability, enabling me to thrive in diverse environments.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Beyond Work</h2>
+                <p className="text-lg leading-relaxed">
+                  Outside work, I enjoy travel, spearfishing, hunting and family barbecues, which keep me inspired.
+                </p>
+              </div>
+            </div>
+          </motion.section>
 
-            <p className="text-lg leading-relaxed">
-              Outside work, I enjoy travel, spearfishing, hunting and family barbecues, which keep me inspired.
-            </p>
-
-            <p className="text-lg leading-relaxed">
+          {/* Call to Action */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-gradient-to-r from-black/5 to-black/10 rounded-xl p-6 text-center">
+            <p className="text-lg leading-relaxed font-medium">
               Connect with me to explore AI developing tools, IT opportunities, full-stack development and discuss Salesforce Sales Ops or share insights on career transitions and possibilities!
             </p>
-          </div>
+          </motion.section>
         </div>
       </div>
       <Footer />

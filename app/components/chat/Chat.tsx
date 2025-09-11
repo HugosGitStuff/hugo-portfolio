@@ -11,7 +11,7 @@ interface Message {
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
-    { content: "Hi this is Hugo 🙂. How may I assist you today?", isUser: false }
+    { content: "Hi this is Hugo 🙂. Ask something about me and I will try my best to answer it.", isUser: false }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

@@ -32,12 +32,19 @@ export default function ChatButton() {
     <div className="fixed bottom-4 right-4 z-50">
       <Sheet open={isOpen} onOpenChange={handleOpenChange}>
         <SheetTrigger asChild>
-          <Button
-            className="h-12 w-12 rounded-full shadow-lg hover:shadow-xl transition-shadow"
-            size="icon"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full blur opacity-50 group-hover:opacity-75 transition duration-200"></div>
+            <Button
+              className="relative h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 bg-background hover:bg-blue-50 hover:scale-105"
+              size="icon"
+            >
+              <MessageCircle className="h-7 w-7 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" />
+              <span className="sr-only">Open Chat</span>
+            </Button>
+            <div className="absolute -top-2 -right-2 h-4 w-4 bg-blue-500 rounded-full animate-bounce">
+              <span className="absolute inset-0 h-full w-full bg-blue-500 rounded-full animate-ping"></span>
+            </div>
+          </div>
         </SheetTrigger>
         <SheetContent 
           side="right" 

@@ -27,16 +27,34 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
-  // Focus input and scroll into view when chat opens
+  // Handle mobile keyboard and visibility
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const handleVisibility = () => {
       if (inputRef.current) {
-        inputRef.current.focus();
-        inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Wait for the keyboard to appear
+        setTimeout(() => {
+          inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Additional scroll to ensure visibility on iOS
+          window.scrollTo(0, window.scrollY + 100);
+        }, 300);
       }
-    }, 100); // Small delay to ensure the sheet animation is complete
+    };
 
-    return () => clearTimeout(timer);
+    const input = inputRef.current;
+    input?.addEventListener('focus', handleVisibility);
+
+    // Initial focus
+    const timer = setTimeout(() => {
+      if (input) {
+        input.focus();
+        handleVisibility();
+      }
+    }, 100);
+
+    return () => {
+      input?.removeEventListener('focus', handleVisibility);
+      clearTimeout(timer);
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -73,7 +91,7 @@ export default function Chat() {
   };
 
   return (
-    <Card className="w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-2rem)] flex flex-col relative">
+    <Card className="w-full h-[100dvh] md:h-[calc(100vh-2rem)] flex flex-col relative">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div
@@ -93,7 +111,7 @@ export default function Chat() {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto">
+      <div className="sticky bottom-0 left-0 right-0 bg-card border-t mt-auto pb-safe">
         <form onSubmit={handleSubmit} className="p-4">
           <div className="flex gap-2">
             <input
@@ -104,6 +122,12 @@ export default function Chat() {
               placeholder="Type your message..."
               className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={isLoading}
+              onFocus={(e) => {
+                // Additional scroll on focus
+                setTimeout(() => {
+                  e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+              }}
             />
             <Button type="submit" disabled={isLoading}>
               {isLoading ? 'Sending...' : 'Send'}

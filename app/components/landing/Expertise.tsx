@@ -34,9 +34,9 @@ export const Expertise = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {skills.map((skill) => (
           <Card key={skill.title} className="p-3 hover:shadow-lg transition-all duration-200">
-            <div className="space-y-0 flex flex-col">
-              <h3 className="text-base font-semibold leading-none">{skill.title}</h3>
-              <p className="text-sm text-muted-foreground leading-tight">{skill.description}</p>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-base font-semibold">{skill.title}</h3>
+              <p className="text-sm text-muted-foreground">{skill.description}</p>
             </div>
           </Card>
         ))}

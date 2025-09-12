@@ -6,8 +6,8 @@ export const Social = () => {
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
-      href: 'https://www.linkedin.com/in/hugo-ramalho-247613346/',
-      username: 'hugo-ramalho'
+      href: 'https://www.linkedin.com/in/hugo-a-ramalho/',
+      username: 'hugo-a-ramalho'
     },
     {
       name: 'GitHub',

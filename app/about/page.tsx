@@ -5,6 +5,7 @@ import { Footer } from '@/app/components/landing/Footer'
 import { motion } from 'framer-motion'
 import { Timeline } from '@/app/components/about/Timeline'
 import { SkillBadges } from '@/app/components/about/SkillBadge'
+import Link from 'next/link'
 
 export default function AboutPage() {
   const skills = [
@@ -64,9 +65,15 @@ export default function AboutPage() {
       location: 'Minas Gerais, Brazil'
     },
     {
-      year: '2006-2007(Internship since 2005)',
-      title: 'CNC Precision Machining',
-      description: 'Working at Consulting Engineering & Development Services, Inc., CED Inc. Precision machining of metal parts and other composites for health and millitary use.',
+      year: '2006-2007',
+      title: 'CNC Machinist - Full Time',
+      description: 'Full-time position at CED Inc. (Consulting Engineering & Development Services) after graduation, specializing in precision machining of metal parts and composites for healthcare and military applications.',
+      location: 'Connecticut, USA'
+    },
+    {
+      year: '2004-2006',
+      title: 'CNC Machinist - Internship',
+      description: 'Internship at CED Inc. while completing technical studies, gaining hands-on experience in precision machining and manufacturing processes.',
       location: 'Connecticut, USA'
     },
     {
@@ -86,8 +93,12 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-6">About Me</h1>
-          <div className="text-lg font-medium text-muted-foreground italic max-w-3xl mx-auto border-l-4 border-r-4 border-black/20 px-6 py-4">
-            | Entrepreneur Transitioning to IT | AI Development Tools & Full-Stack Programming Student | Software Engineering & AI Student | Experienced Leader in Project Management, Problem Solving & Client Services |
+          <div className="text-lg font-medium text-muted-foreground italic max-w-3xl mx-auto relative">
+            <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent top-0" />
+            <div className="px-6 py-4">
+              Entrepreneur Transitioning to IT | AI Development Tools & Full-Stack Programming Student | Software Engineering & AI Student | Experienced Leader in Project Management, Problem Solving & Client Services
+            </div>
+            <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-black/20 to-transparent bottom-0" />
           </div>
         </motion.div>
         
@@ -156,10 +167,12 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-r from-black/5 to-black/10 rounded-xl p-6 text-center">
-            <p className="text-lg leading-relaxed font-medium">
-              Connect with me to explore AI developing tools, IT opportunities, full-stack development or share insights on career transitions and possibilities!
-            </p>
+            className="bg-gradient-to-r from-black/5 to-black/10 hover:from-black/10 hover:to-black/20 rounded-xl p-6 text-center cursor-pointer transform hover:scale-[1.02] transition-all duration-300">
+            <Link href="/contact" className="block hover:opacity-80 transition-opacity">
+              <p className="text-lg leading-relaxed font-medium">
+                Connect with me to explore AI developing tools, IT opportunities, full-stack development or share insights on career transitions and possibilities!
+              </p>
+            </Link>
           </motion.section>
         </div>
       </div>

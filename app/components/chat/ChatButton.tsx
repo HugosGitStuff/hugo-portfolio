@@ -6,8 +6,17 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { MessageCircle } from 'lucide-react';
 import Chat from './Chat';
 
+interface Message {
+  content: string;
+  isUser: boolean;
+}
+
 export default function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    { content: "Hi this is Hugo 🙂. Ask something about me and I will try my best to answer it.", isUser: false }
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
@@ -32,7 +41,12 @@ export default function ChatButton() {
           <SheetHeader className="px-4 pt-4">
             <SheetTitle>Chat with Hugo</SheetTitle>
           </SheetHeader>
-          <Chat />
+          <Chat 
+            messages={messages}
+            setMessages={setMessages}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
         </SheetContent>
       </Sheet>
     </div>

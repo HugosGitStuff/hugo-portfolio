@@ -14,8 +14,8 @@ export const ContactInfo = () => {
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
-      href: 'https://www.linkedin.com/in/hugo-ramalho-247613346/',
-      username: 'hugo-ramalho'
+      href: 'https://www.linkedin.com/in/hugo-a-ramalho/',
+      username: 'hugo-a-ramalho'
     },
     {
       name: 'GitHub',
@@ -53,12 +53,11 @@ export const ContactInfo = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-center space-y-4"
+        className="text-center space-y-2 sm:space-y-4"
       >
-        <h2 className="text-3xl font-bold">Let's Get in Touch</h2>
-        <p className="text-lg text-muted-foreground">
-          I'm always open to new opportunities and collaborations.
-          Feel free to reach out through any of these channels!
+        <h2 className="text-2xl sm:text-3xl font-bold">Let's Connect</h2>
+        <p className="text-base sm:text-lg text-muted-foreground px-4 sm:px-0">
+          I'm always open to new opportunities and collaborations. Feel free to reach out through any of these channels!
         </p>
       </motion.div>
 
@@ -66,18 +65,18 @@ export const ContactInfo = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+        className="bg-card rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow"
         onClick={handleCopyEmail}
         style={{ cursor: 'pointer' }}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="bg-primary/10 p-3 rounded-full">
-              <FaEnvelope className="w-6 h-6 text-primary" />
+              <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
             </div>
             <div>
-              <div className="font-medium text-lg">Email</div>
-              <div className="text-muted-foreground">{email}</div>
+              <div className="font-medium text-base sm:text-lg">Email</div>
+              <div className="text-sm sm:text-base text-muted-foreground">{email}</div>
             </div>
           </div>
           <div className="text-sm text-muted-foreground">
@@ -102,15 +101,15 @@ export const ContactInfo = () => {
             <Link 
               href={social.href} 
               target="_blank"
-              className="flex items-center gap-4 p-4 rounded-lg border bg-card hover:bg-accent/50 transition-all hover:scale-105"
+              className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border bg-card hover:bg-accent/50 transition-all hover:scale-105"
             >
               <div className="flex items-center gap-4">
                 <div className="bg-primary/10 p-2 rounded-full">
                   <social.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <div className="font-medium">{social.name}</div>
-                  <div className="text-sm text-muted-foreground">{social.username}</div>
+                  <div className="font-medium text-sm sm:text-base">{social.name}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{social.username}</div>
                 </div>
               </div>
             </Link>

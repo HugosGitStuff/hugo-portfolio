@@ -40,8 +40,8 @@ export default function ProjectsPage() {
     <main className="flex min-h-screen flex-col items-center">
       <SimpleNavbar />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16">
-        <h1 className="text-4xl font-bold mb-4">My Projects</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">My Projects</h1>
+        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
           Here are some of my featured projects. Each one represents a unique challenge and learning experience. More projects will be added as I deploy them.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

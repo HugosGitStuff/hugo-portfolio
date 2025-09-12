@@ -9,12 +9,15 @@ interface Message {
   isUser: boolean;
 }
 
-export default function Chat() {
-  const [messages, setMessages] = useState<Message[]>([
-    { content: "Hi this is Hugo 🙂. Ask something about me and I will try my best to answer it.", isUser: false }
-  ]);
+interface ChatProps {
+  messages: Message[];
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Chat({ messages, setMessages, isLoading, setIsLoading }: ChatProps) {
   const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -80,9 +83,22 @@ export default function Chat() {
       }
 
       const data = await response.json();
+      
+      // Check if there's an error in the response
+      if (data.error) {
+        setMessages(prev => [...prev, { 
+          content: "I apologize, but I'm currently offline. Please try again later or check out my projects and other sections of the portfolio!", 
+          isUser: false 
+        }]);
+        return;
+      }
+
       setMessages(prev => [...prev, { content: data.response, isUser: false }]);
     } catch (error) {
-      setMessages(prev => [...prev, { content: "Sorry, I'm having trouble responding right now. Please try again later.", isUser: false }]);
+      setMessages(prev => [...prev, { 
+        content: "I apologize, but I'm currently offline. Please try again later or check out my projects and other sections of the portfolio!", 
+        isUser: false 
+      }]);
     } finally {
       setIsLoading(false);
     }

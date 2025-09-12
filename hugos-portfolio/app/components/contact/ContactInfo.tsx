@@ -1,13 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 export const ContactInfo = () => {
-  const [copySuccess, setCopySuccess] = useState(false)
-  
   const email = 'hugotransport@icloud.com'
   
   const socials = [
@@ -37,16 +34,6 @@ export const ContactInfo = () => {
     }
   ]
 
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email)
-      setCopySuccess(true)
-      setTimeout(() => setCopySuccess(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy email:', err)
-    }
-  }
-
   return (
     <div className="space-y-12">
       <motion.div 
@@ -65,22 +52,15 @@ export const ContactInfo = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-card rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow"
-        onClick={handleCopyEmail}
-        style={{ cursor: 'pointer' }}
+        className="bg-card rounded-xl p-4 sm:p-6 shadow-lg"
       >
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-shrink">
-            <div className="bg-primary/10 p-2 sm:p-3 rounded-full flex-shrink-0">
-              <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-            </div>
-            <div className="min-w-0 flex-shrink">
-              <div className="font-medium text-base sm:text-lg">Email</div>
-              <div className="text-sm sm:text-base text-muted-foreground truncate">{email}</div>
-            </div>
+        <div className="flex items-center gap-4">
+          <div className="bg-primary/10 p-3 rounded-full">
+            <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </div>
-          <div className="hidden md:block text-sm text-muted-foreground pl-4 flex-shrink-0">
-            {copySuccess ? 'Copied!' : 'Click to copy'}
+          <div>
+            <div className="font-medium text-base sm:text-lg">Email</div>
+            <div className="text-sm sm:text-base text-muted-foreground">{email}</div>
           </div>
         </div>
       </motion.div>

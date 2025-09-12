@@ -16,12 +16,12 @@ export function ProjectCard({ title, description, link, technologies, isFeatured
     }`}>
       <Link href={link} target="_blank" rel="noopener noreferrer">
         <div className="p-4 sm:p-6">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
             <h3 className={`${isFeatured ? 'text-xl sm:text-2xl' : 'text-lg sm:text-xl'} font-semibold hover:text-[#c4bfa7] transition-colors`}>
               {title}
             </h3>
             {isFeatured && (
-              <span className="px-2 py-1 text-xs font-semibold bg-[#e6e2d3] dark:bg-[#e6e2d3] dark:bg-opacity-20 text-gray-700 dark:text-gray-200 rounded-full">
+              <span className="self-start sm:self-auto inline-flex items-center justify-center px-2 py-1 text-xs font-semibold bg-[#e6e2d3] dark:bg-[#e6e2d3] dark:bg-opacity-20 text-gray-700 dark:text-gray-200 rounded-full whitespace-nowrap">
                 Featured Project
               </span>
             )}

@@ -69,17 +69,17 @@ export const ContactInfo = () => {
         onClick={handleCopyEmail}
         style={{ cursor: 'pointer' }}
       >
-        <div className="flex items-center">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="bg-primary/10 p-3 rounded-full">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-shrink">
+            <div className="bg-primary/10 p-2 sm:p-3 rounded-full flex-shrink-0">
               <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-shrink">
               <div className="font-medium text-base sm:text-lg">Email</div>
               <div className="text-sm sm:text-base text-muted-foreground truncate">{email}</div>
             </div>
           </div>
-          <div className="text-sm text-muted-foreground pl-2 sm:pl-4 min-w-[80px] text-right">
+          <div className="text-xs sm:text-sm text-muted-foreground pl-2 flex-shrink-0">
             {copySuccess ? 'Copied!' : 'Click to copy'}
           </div>
         </div>

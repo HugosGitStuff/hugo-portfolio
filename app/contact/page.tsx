@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { SimpleNavbar } from '@/app/components/navigation/SimpleNavbar'
+import { Navbar } from '@/app/components/landing/Navbar'
 import { Footer } from '@/app/components/landing/Footer'
 import { ContactInfo } from '@/app/components/contact/ContactInfo'
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <SimpleNavbar />
+      <Navbar />
       <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16">
         <ContactInfo />
       </div>

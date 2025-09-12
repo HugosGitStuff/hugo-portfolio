@@ -1,6 +1,6 @@
 'use client'
 
-import { SimpleNavbar } from '@/app/components/navigation/SimpleNavbar'
+import { Navbar } from '@/app/components/landing/Navbar'
 import { Footer } from '@/app/components/landing/Footer'
 import { motion } from 'framer-motion'
 import { Timeline } from '@/app/components/about/Timeline'
@@ -85,7 +85,7 @@ export default function AboutPage() {
   ]
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <SimpleNavbar />
+      <Navbar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}

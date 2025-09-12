@@ -5,9 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { Home } from 'lucide-react'
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   const navItems = [
     { href: '/about', label: 'About', variant: 'ghost' },
@@ -24,6 +28,14 @@ export const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4">
+            {!isHome && (
+              <Button variant="ghost" size="icon" asChild>
+                <Link href="/">
+                  <Home className="h-5 w-5" />
+                  <span className="sr-only">Home</span>
+                </Link>
+              </Button>
+            )}
             {navItems.map((item) => (
               <Button key={item.href} variant={item.variant} asChild>
                 <Link href={item.href}>{item.label}</Link>
@@ -42,6 +54,14 @@ export const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[80vw] sm:w-[350px]">
                 <nav className="flex flex-col gap-4 mt-8">
+                  {!isHome && (
+                    <Button variant="ghost" className="w-full justify-start" asChild onClick={() => setOpen(false)}>
+                      <Link href="/">
+                        <Home className="h-5 w-5 mr-2" />
+                        Home
+                      </Link>
+                    </Button>
+                  )}
                   {navItems.map((item) => (
                     <Button
                       key={item.href}

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { SimpleNavbar } from '@/app/components/navigation/SimpleNavbar'
+import { Navbar } from '@/app/components/landing/Navbar'
 import { Footer } from '@/app/components/landing/Footer'
 import { ProjectCard } from '@/app/components/projects/ProjectCard'
 
@@ -38,7 +38,7 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <SimpleNavbar />
+      <Navbar />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">My Projects</h1>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">

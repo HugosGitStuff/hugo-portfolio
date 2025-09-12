@@ -79,7 +79,7 @@ export const ContactInfo = () => {
               <div className="text-sm sm:text-base text-muted-foreground truncate">{email}</div>
             </div>
           </div>
-          <div className="text-xs sm:text-sm text-muted-foreground pl-2 flex-shrink-0">
+          <div className="hidden sm:block text-sm text-muted-foreground pl-4 flex-shrink-0">
             {copySuccess ? 'Copied!' : 'Click to copy'}
           </div>
         </div>

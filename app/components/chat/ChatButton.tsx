@@ -14,7 +14,7 @@ interface Message {
 export default function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { content: "Hello! I'm Hugo's AI assistant 🙂. How can I help you learn more about Hugo's background and experience?", isUser: false }
+    { content: "Hi this is Hugo 🙂. Ask something about me and I will try my best to answer it.", isUser: false }
   ]);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -167,7 +167,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-r from-black/5 to-black/10 hover:from-black/10 hover:to-black/20 rounded-xl p-6 text-center cursor-pointer transform hover:scale-[1.02] transition-all duration-300">
+            className="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10 hover:from-black/10 hover:to-black/20 dark:hover:from-white/10 dark:hover:to-white/20 rounded-xl p-6 text-center cursor-pointer transform hover:scale-[1.02] transition-all duration-300">
             <Link href="/contact" className="block hover:opacity-80 transition-opacity">
               <p className="text-lg leading-relaxed font-medium">
                 Connect with me to explore AI developing tools, IT opportunities, full-stack development or share insights on career transitions and possibilities!

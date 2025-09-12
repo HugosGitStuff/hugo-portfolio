@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Menu } from 'lucide-react'
+import { Menu, Home } from 'lucide-react'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Home } from 'lucide-react'
+import { ThemeToggle } from '../theme/ThemeToggle'
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -27,7 +27,7 @@ export const Navbar = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-4">
+          <div className="hidden md:flex gap-4 items-center">
             {!isHome && (
               <Button variant="ghost" size="icon" asChild>
                 <Link href="/">
@@ -41,6 +41,7 @@ export const Navbar = () => {
                 <Link href={item.href}>{item.label}</Link>
               </Button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Navigation */}
@@ -73,6 +74,9 @@ export const Navbar = () => {
                       <Link href={item.href}>{item.label}</Link>
                     </Button>
                   ))}
+                  <div className="mt-2">
+                    <ThemeToggle />
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>

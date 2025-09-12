@@ -21,7 +21,7 @@ export function ProjectCard({ title, description, link, technologies, isFeatured
               {title}
             </h3>
             {isFeatured && (
-              <span className="self-start sm:self-auto inline-flex items-center justify-center px-2 py-1 text-xs font-semibold bg-[#e6e2d3] dark:bg-[#e6e2d3] dark:bg-opacity-20 text-gray-700 dark:text-gray-200 rounded-full whitespace-nowrap">
+              <span className="self-start sm:self-auto inline-flex items-center justify-center px-2 py-1 text-xs font-semibold bg-[#e6e2d3] text-gray-900 rounded-full whitespace-nowrap">
                 Featured Project
               </span>
             )}
@@ -33,7 +33,7 @@ export function ProjectCard({ title, description, link, technologies, isFeatured
                 key={index}
                 className={`px-2 py-1 text-xs sm:text-sm rounded-full ${
                   isFeatured 
-                    ? 'bg-[#e6e2d3] dark:bg-[#e6e2d3] dark:bg-opacity-20 text-gray-700 dark:text-gray-200' 
+                    ? 'bg-[#e6e2d3] text-gray-900' 
                     : 'bg-gray-100 dark:bg-gray-800'
                 }`}
               >
